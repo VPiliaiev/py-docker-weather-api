@@ -4,13 +4,19 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
+URL = "http://api.weatherapi.com/v1/current.json"
+API_KEY = os.getenv("API_KEY")
+FILTERING = "Paris"
+LANG = "en"
+
 
 def get_weather() -> None:
-    URL = "http://api.weatherapi.com/v1/current.json"
-    API_KEY = os.getenv("API_KEY")
-    FILTERING = os.getenv("FILTERING")
+    url = URL
+    api_key = API_KEY
+    filtering = FILTERING
+    lang = LANG
 
-    result = requests.get(f"{URL}?key={API_KEY}&q={FILTERING}&lang=en")
+    result = requests.get(f"{url}?key={api_key}&q={filtering}&lang={lang}")
     data = result.json()
 
     if "error" in data:
